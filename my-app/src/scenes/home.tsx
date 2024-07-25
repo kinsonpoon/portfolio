@@ -30,14 +30,6 @@ import {
     FormLabel, Snackbar
 } from "@mui/material";
 
-interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window;
-}
-
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
@@ -46,12 +38,21 @@ export const openInNewTab = (url: string): void => {
 }
 
 
-export default function Home(props: Props) {
-    const {window} = props;
+export default function Home() {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const handleClick = () => {
-        setOpen(true);
+    const handleClick = (nav: string) => {
+        switch (nav){
+            case 'Home':
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                break;
+            case 'About':
+                setOpen(true);
+                break;
+            case 'Contact':
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                break;
+        }
     };
 
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -75,7 +76,7 @@ export default function Home(props: Props) {
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{textAlign: 'center'}} onClick={handleClick}>
+                        <ListItemButton sx={{textAlign: 'center'}} onClick={()=>handleClick(item)}>
                             <ListItemText primary={item}/>
                         </ListItemButton>
                     </ListItem>
@@ -96,8 +97,6 @@ export default function Home(props: Props) {
             </IconButton>
         </React.Fragment>
     );
-
-    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <Box sx={{display: 'flex'}}>
@@ -122,7 +121,7 @@ export default function Home(props: Props) {
                     </Typography>
                     <Box sx={{display: {xs: 'none', sm: 'block'}}}>
                         {navItems.map((item) => (
-                            <Button key={item} sx={{color: '#fff'}} onClick={handleClick}>
+                            <Button key={item} sx={{color: '#fff'}} onClick={()=>handleClick(item)}>
                                 {item}
                             </Button>
                         ))}
@@ -131,7 +130,6 @@ export default function Home(props: Props) {
             </AppBar>
             <nav>
                 <Drawer
-                    container={container}
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
