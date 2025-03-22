@@ -1,149 +1,20 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
-import CloseIcon from '@mui/icons-material/Close';
 import {
     Checkbox,
     FormControl,
     FormControlLabel,
     FormGroup,
-    FormLabel, Snackbar
+    FormLabel
 } from "@mui/material";
-import {Footer} from "../components/layout/footer";
 import {AccordionElement} from "../components/Accordion/AccordionElement";
 
-const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
-
 export default function Home() {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [open, setOpen] = React.useState(false);
-    
-    const handleClick = React.useCallback((nav: string) => {
-        switch (nav){
-            case 'Home':
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                break;
-            case 'About':
-                setOpen(true);
-                break;
-            case 'Contact':
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                break;
-        }
-    },[]);
-
-    const handleClose =  React.useCallback((event: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setOpen(false);
-    },[]);
-
-    const handleDrawerToggle = () => {
-        setMobileOpen((prevState) => !prevState);
-    };
-
-    const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
-            <Typography variant="h6" sx={{my: 2}}>
-                Developers
-            </Typography>
-            <Divider/>
-            <List>
-                {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{textAlign: 'center'}} onClick={()=>handleClick(item)}>
-                            <ListItemText primary={item}/>
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    );
-
-    const action = (
-        <React.Fragment>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </React.Fragment>
-    );
-
     return (
-        <Box sx={{display: 'flex'}}>
-            <CssBaseline/>
-            <AppBar component="nav">
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{mr: 2, display: {sm: 'none'}}}
-                    >
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
-                    >
-                        Developers
-                    </Typography>
-                    <Box sx={{display: {xs: 'none', sm: 'block'}}}>
-                        {navItems.map((item) => (
-                            <Button key={item} sx={{color: '#fff'}} onClick={()=>handleClick(item)}>
-                                {item}
-                            </Button>
-                        ))}
-                    </Box>
-                </Toolbar>
-            </AppBar>
-            <nav>
-                <Drawer
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: {xs: 'block', sm: 'none'},
-                        '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-            </nav>
-            <Snackbar
-                open={open}
-                autoHideDuration={2000}
-                onClose={handleClose}
-                message="Hi There! I am Kinson. :)"
-                action={action}
-            />
-            <Box component="main" p={{xs: 1, sm: 2, md: 3}} width={'100%'}>
-                <Toolbar/>
+        <>
                 <Box>
                     <div className="typewriter">
                         <h1>Hi there! I am Kinson. :)</h1>
@@ -254,8 +125,6 @@ export default function Home() {
                             "Nam Pha Pa Yai-Thailand"
                         ]}/>
                 </Box>
-                <Footer/>
-            </Box>
-        </Box>
+        </>
     );
 }

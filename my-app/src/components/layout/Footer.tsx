@@ -13,8 +13,8 @@ export const Footer = () => {
         <Box mt={2} display={'flex'} justifyContent={'center'} alignItems={'center'}>
             <Stack direction="row" spacing={1}>
                 <Chip icon={<LinkedInIcon/>} label="LinkedIn" clickable onClick={()=>openInNewTab('LinkedIn.com/in/king-hin-poon-aa7858134')}/>
-                <Chip icon={<GitHubIcon/>} label="GitHub" clickable onClick={()=>openInNewTab('https://github.com/kinsonpoon')}/>
-                <Chip icon={<InstagramIcon/>} label="Instagram" clickable onClick={()=>openInNewTab('https://www.instagram.com/o0kinson0o/?hl=en')}/>
+                <Chip icon={<GitHubIcon/>} label="GitHub" clickable onClick={()=>openInNewTab('github.com/kinsonpoon')}/>
+                <Chip icon={<InstagramIcon/>} label="Instagram" clickable onClick={()=>openInNewTab('www.instagram.com/o0kinson0o/?hl=en')}/>
             </Stack>
         </Box>
     )
