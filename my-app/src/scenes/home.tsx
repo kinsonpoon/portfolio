@@ -15,33 +15,25 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
 import {
-    Accordion, AccordionDetails,
-    AccordionSummary,
     Checkbox,
     FormControl,
     FormControlLabel,
     FormGroup,
     FormLabel, Snackbar
 } from "@mui/material";
+import {Footer} from "../components/layout/footer";
+import {AccordionElement} from "../components/Accordion/AccordionElement";
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
-export const openInNewTab = (url: string): void => {
-    window.open(`https://${url}`, '_blank')
-}
-
-
 export default function Home() {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const handleClick = (nav: string) => {
+    
+    const handleClick = React.useCallback((nav: string) => {
         switch (nav){
             case 'Home':
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -53,15 +45,14 @@ export default function Home() {
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
                 break;
         }
-    };
+    },[]);
 
-    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    const handleClose =  React.useCallback((event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
-    };
+    },[]);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -223,66 +214,47 @@ export default function Home() {
                     </Box>
                 </Box>
                 <Box mt={2}>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1-content"
-                            id="panel1-header"
-                        >
-                            Projects
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>- ClimbFUnity Web app</Typography>
-                            <Typography>- MdLand SDOH Web app</Typography>
-                            <Typography>- MdLand IPH Web app</Typography>
-                            <Typography>- Club Monaco HK eshop</Typography>
-                            <Typography>- Nike and Sacai HK event site</Typography>
-                            <Typography>- Varadise DWSS Web app</Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2-content"
-                            id="panel2-header"
-                        >
-                            Experience
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>Senior Software Developer---MDLand,Canada</Typography>
-                            <Typography>Software Developer---MDLand,Canada</Typography>
-                            <Typography>Full-Stack Developer---Digidumpling,Hong Kong</Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2-content"
-                            id="panel3-header"
-                        >
-                            Outdoor Climbing Experience
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>Squmaish-BC,Canada</Typography>
-                            <Typography>Niagara Glen-ON,Canada</Typography>
-                            <Typography>Everywhere in Hong Kong</Typography>
-                            <Typography>Mitake-Japan</Typography>
-                            <Typography>Long Dong-Taiwan</Typography>
-                            <Typography>Guanziling-Taiwan</Typography>
-                            <Typography>El Chorro-Spain</Typography>
-                            <Typography>Green Climbers Home-Laos</Typography>
-                            <Typography>Krabi-Thailand</Typography>
-                            <Typography>Nam Pha Pa Yai-Thailand</Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    <AccordionElement 
+                        id={"panel1-header"} 
+                        ariaControls={"panel1-content"}
+                        title={"Projects"}
+                        details={[
+                            "ClimbFUnity Web app",
+                            "MdLand SDOH Web app",
+                            "MdLand SDOH Admin Web app",
+                            "MdLand SDOH Chrome Extension",
+                            "MdLand IPH Web app",
+                            "Club Monaco HK eshop",
+                            "Nike and Sacai HK event site",
+                            "Varadise DWSS Web app"
+                        ]}/>
+                    <AccordionElement
+                        id={"panel2-header"}
+                        ariaControls={"panel2-content"}
+                        title={"Experience"}
+                        details={[
+                            "Senior Software Developer---MDLand,Canada",
+                            "Software Developer---MDLand,Canada",
+                            "Full-Stack Developer---Digidumpling,Hong Kong"
+                        ]}/>
+                    <AccordionElement
+                        id={"panel3-header"}
+                        ariaControls={"panel3-content"}
+                        title={"Outdoor Climbing Experience"}
+                        details={[
+                            "Squmaish-BC,Canada",
+                            "Niagara Glen-ON,Canada",
+                            "Everywhere in Hong Kong",
+                            "Mitake-Japan",
+                            "Long Dong-Taiwan",
+                            "Guanziling-Taiwan",
+                            "El Chorro-Spain",
+                            "Green Climbers Home-Laos",
+                            "Krabi-Thailand",
+                            "Nam Pha Pa Yai-Thailand"
+                        ]}/>
                 </Box>
-                <Box mt={2} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                    <Stack direction="row" spacing={1}>
-                        <Chip icon={<LinkedInIcon/>} label="LinkedIn" clickable onClick={()=>openInNewTab('LinkedIn.com/in/king-hin-poon-aa7858134')}/>
-                        <Chip icon={<GitHubIcon/>} label="GitHub" clickable onClick={()=>openInNewTab('https://github.com/kinsonpoon')}/>
-                        <Chip icon={<InstagramIcon/>} label="Instagram" clickable onClick={()=>openInNewTab('https://www.instagram.com/o0kinson0o/?hl=en')}/>
-                    </Stack>
-                </Box>
+                <Footer/>
             </Box>
         </Box>
     );
