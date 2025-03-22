@@ -7,6 +7,7 @@ import Home from "./scenes/Home";
 import OShi from "./scenes/music/OShi";
 import MainLayout from "./components/layout/MainLayout";
 import ScrollToTop from "./utils/ScrollToTop";
+import {ProductView} from "./scenes/products/ProductView";
 
 const darkTheme = createTheme({
     palette: {
@@ -24,6 +25,7 @@ function App() {
                     <Route element={<MainLayout/>}>
                         <Route path="/" element={<Home/>}/>
                         <Route path={"/oshi"} element={<OShi/>}/>
+                        <Route path={"/products"} element={<ProductView/>}/>
                     </Route>
 
                 </Routes>

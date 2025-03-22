@@ -18,7 +18,7 @@ import {Snackbar} from "@mui/material";
 import {Outlet, useNavigate} from 'react-router';
 import {Footer} from "./Footer";
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact', '推し'];
+const navItems = ['Home', 'About', 'Contact', 'products', '推し'];
 
 export default function MainLayout() {
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -34,6 +34,9 @@ export default function MainLayout() {
                 break;
             case 'Contact':
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                break;
+            case 'products':
+                navigate('/products');
                 break;
             case '推し':
                 navigate('/oshi');

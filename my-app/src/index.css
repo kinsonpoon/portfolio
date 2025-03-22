@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.instagramPostContainer {
+  flex: 1 1 30%;
+  /*Start Run Code Snippet output CSS*/
+  padding: 5px;
+  justify-items: center;
+}
