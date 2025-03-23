@@ -4,10 +4,12 @@ import {ThemeProvider, createTheme} from '@mui/material/styles';
 import { BrowserRouter, Routes, Route } from "react-router";
 import CssBaseline from '@mui/material/CssBaseline';
 import Home from "./scenes/Home";
-import OShi from "./scenes/music/OShi";
 import MainLayout from "./components/layout/MainLayout";
 import ScrollToTop from "./utils/ScrollToTop";
 import {ProductView} from "./scenes/products/ProductView";
+import {GuitarSheetBuilder} from "./scenes/guitar/GuitarSheetBuilder";
+import OShi from "./scenes/oShi/OShi";
+import {SnackBarProvider} from "./context/SnackBarContext";
 
 const darkTheme = createTheme({
     palette: {
@@ -21,14 +23,16 @@ function App() {
             <CssBaseline/>
             <BrowserRouter>
                 <ScrollToTop />
-                <Routes>
-                    <Route element={<MainLayout/>}>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path={"/oshi"} element={<OShi/>}/>
-                        <Route path={"/products"} element={<ProductView/>}/>
-                    </Route>
-
-                </Routes>
+                <SnackBarProvider>
+                    <Routes>
+                        <Route element={<MainLayout/>}>
+                            <Route path="/" element={<Home/>}/>
+                            <Route path={"/oshi"} element={<OShi/>}/>
+                            <Route path={"/products"} element={<ProductView/>}/>
+                            <Route path={"/guitar"} element={<GuitarSheetBuilder/>}/>
+                        </Route>
+                    </Routes>
+                </SnackBarProvider>
             </BrowserRouter>
         </ThemeProvider>
     );

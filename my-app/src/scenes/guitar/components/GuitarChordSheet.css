@@ -1,0 +1,40 @@
+.chord-sheet-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.lyrics-input {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.chord-sheet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.line {
+    display: flex;
+    margin: 5px 0;
+}
+
+.fret-input {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 1px;
+}
+
+.separator {
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
